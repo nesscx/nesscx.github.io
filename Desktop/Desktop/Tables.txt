@@ -1,0 +1,31 @@
+Roles de usuario
+- Administrador
+- Usuario normal
+- Usuario asiduo
+
+Compra de entradas
+
+Usuario normal:
+- IDcard 	-- Longitud 20 y numérico, algoritmo MD5
+- phoneNumber   -- (O)
+- cardExpire
+- email
+- CVV2
+
+Usuario asiudo: -- Hereda de Usuario normal
+- user
+- Password 
+
+Entradas de cine
+- cine
+- movie
+- date
+- hora
+- NUMentradas
+- fila
+- butacas
+- precio
+
+Alta de usuario
+- nombre   -- (O)
+- apellidos -- (O)
