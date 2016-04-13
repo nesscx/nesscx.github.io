@@ -1,0 +1,107 @@
+﻿
+@{
+    ViewBag.Title = "RoomManagementModifieMode";
+}
+
+<link rel="stylesheet" href="~/Content/css/main.css">
+<link rel="stylesheet" href="~/Content/css/bootstrap.css">
+<script src="~/Content/js/jquery-2.1.1.min.js"></script>
+<script src="~/Content/js/bootstrap.js"></script>
+<style>
+#content{
+		position: absolute;
+		min-height: 50%;
+		top: 20%;
+		left: 5%;
+	}
+
+	.selected{
+		cursor: pointer;
+	}
+	.selected:hover{
+		background-color: #0585C0;
+	}
+	.seleccionada{
+		background-color: #0585C0;
+	}
+
+	tr input{
+		width:130px;
+	}
+	thead tr td{
+		width:150px;
+	}
+</style>
+<script>
+    $(document).ready(function () {
+        $('#bt_add').click(function () {
+            agregar();
+        });
+        $('#bt_del').click(function () {
+            eliminar(id_fila_selected);
+        });
+        $('#bt_delall').click(function () {
+            eliminarTodasFilas();
+        });
+
+
+    });
+    var cont = 0;
+    var id_fila_selected = [];
+    function agregar() {
+        cont++;
+        var fila = '<tr class="selected" id="fila' + cont + '" onclick="seleccionar(this.id);"><td>' + cont + '</td><td><input type="text"></td></tr>';
+        $('#tabla').append(fila);
+        reordenar();
+    }
+
+    function seleccionar(id_fila) {
+        if ($('#' + id_fila).hasClass('seleccionada')) {
+            $('#' + id_fila).removeClass('seleccionada');
+        }
+        else {
+            $('#' + id_fila).addClass('seleccionada');
+        }
+        //2702id_fila_selected=id_fila;
+        id_fila_selected.push(id_fila);
+    }
+
+    function eliminar(id_fila) {
+        /*$('#'+id_fila).remove();
+		reordenar();*/
+        for (var i = 0; i < id_fila.length; i++) {
+            $('#' + id_fila[i]).remove();
+        }
+        reordenar();
+    }
+
+    function reordenar() {
+        var num = 1;
+        $('#tabla tbody tr').each(function () {
+            $(this).find('td').eq(0).text(num);
+            num++;
+        });
+    }
+    function eliminarTodasFilas() {
+        $('#tabla tbody tr').each(function () {
+            $(this).remove();
+        });
+
+    }
+</script>
+    <div id="content">
+        <button id="bt_add" class="btn btn-default">Agregar</button>
+        <button id="bt_guardar" class="btn btn-default">Guardar</button>
+        &nbsp;&nbsp;
+        <button id="bt_del" class="btn btn-default">Eliminar</button>
+        <button id="bt_delall" class="btn btn-default">Eliminar todo</button>
+        <table id="tabla" class="table table-bordered">
+            <thead>
+                <tr>
+                    <td>No.</td>
+                    <td>Cine donde se Ubica</td>
+                </tr>
+            </thead>
+        </table>
+    </div>
+

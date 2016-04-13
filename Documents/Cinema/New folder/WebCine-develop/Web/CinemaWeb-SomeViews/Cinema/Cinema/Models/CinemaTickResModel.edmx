@@ -1,0 +1,1732 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CinemaTickResModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Actor">
+          <Key>
+            <PropertyRef Name="Actor_ID" />
+          </Key>
+          <Property Name="Actor_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Actor_First_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Actor_Last_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Country_ID" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cinema">
+          <Key>
+            <PropertyRef Name="Province_ID" />
+            <PropertyRef Name="Cinema_Name" />
+          </Key>
+          <Property Name="Province_ID" Type="char" MaxLength="6" Nullable="false" />
+          <Property Name="Cinema_Name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Cinema_Address" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Location_URL" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Cinema_Listing">
+          <Key>
+            <PropertyRef Name="Cinema_Listing_ID" />
+          </Key>
+          <Property Name="Cinema_Listing_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Day" Type="date" Nullable="false" />
+          <Property Name="Start_Time" Type="time" Precision="0" Nullable="false" />
+          <Property Name="Ending_Time" Type="time" Precision="0" Nullable="false" />
+          <Property Name="Cinema_Room_ID" Type="int" Nullable="false" />
+          <Property Name="Movie_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cinema_Room">
+          <Key>
+            <PropertyRef Name="Cinema_Room_ID" />
+          </Key>
+          <Property Name="Cinema_Room_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Room_Rows" Type="tinyint" Nullable="false" />
+          <Property Name="Seating" Type="tinyint" Nullable="false" />
+          <Property Name="Availability_booking" Type="bit" Nullable="false" />
+          <Property Name="Cinema_Room_Type_ID" Type="int" Nullable="false" />
+          <Property Name="Cinema_Name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Province_ID" Type="char" MaxLength="6" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cinema_Room_Type">
+          <Key>
+            <PropertyRef Name="Cinema_Room_Type_ID" />
+          </Key>
+          <Property Name="Cinema_Room_Type_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Cinema_Room_Type_Description" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Price" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="Country_ID" />
+          </Key>
+          <Property Name="Country_ID" Type="smallint" Nullable="false" />
+          <Property Name="Alpha2" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="Alpha3" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="LangCS" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="LangDE" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="LangEN" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="LangES" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="LangFR" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="LangIT" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="LangNL" Type="varchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CreditCard">
+          <Key>
+            <PropertyRef Name="CreditCard_ID" />
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="CreditCard_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Expiry_Date" Type="date" Nullable="false" />
+          <Property Name="Number" Type="varbinary" MaxLength="256" Nullable="false" />
+          <Property Name="CVV" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="Proprietary_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="User_ID" Type="int" Nullable="false" />
+          <Property Name="CreditCard_Type_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CreditCard_Type">
+          <Key>
+            <PropertyRef Name="CreditCard_Type_ID" />
+          </Key>
+          <Property Name="CreditCard_Type_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CreditCard_Description" Type="varchar" MaxLength="35" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Director">
+          <Key>
+            <PropertyRef Name="Director_ID" />
+          </Key>
+          <Property Name="Director_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Director_First_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Director_Last_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Country_ID" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Email">
+          <Key>
+            <PropertyRef Name="Email_ID" />
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="Email_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Mail" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="User_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Film_Classification">
+          <Key>
+            <PropertyRef Name="Film_Classification_ID" />
+          </Key>
+          <Property Name="Film_Classification_ID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Classification_Description" Type="varchar" MaxLength="80" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Genre">
+          <Key>
+            <PropertyRef Name="Genre_ID" />
+          </Key>
+          <Property Name="Genre_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Genre_Description" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Movie">
+          <Key>
+            <PropertyRef Name="Movie_ID" />
+          </Key>
+          <Property Name="Movie_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Sypnosis" Type="varchar(max)" Nullable="false" />
+          <Property Name="Release_Date" Type="date" Nullable="false" />
+          <Property Name="Image_URL" Type="varchar(max)" />
+          <Property Name="Film_Classification_ID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="duration" Type="time" Precision="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Movie_Actor">
+          <Key>
+            <PropertyRef Name="Movie_ID" />
+            <PropertyRef Name="Actor_ID" />
+          </Key>
+          <Property Name="Movie_ID" Type="int" Nullable="false" />
+          <Property Name="Actor_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Movie_Director">
+          <Key>
+            <PropertyRef Name="Movie_ID" />
+            <PropertyRef Name="Director_ID" />
+          </Key>
+          <Property Name="Movie_ID" Type="int" Nullable="false" />
+          <Property Name="Director_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Movie_Genre">
+          <Key>
+            <PropertyRef Name="Genre_ID" />
+            <PropertyRef Name="Movie_ID" />
+          </Key>
+          <Property Name="Genre_ID" Type="int" Nullable="false" />
+          <Property Name="Movie_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Phone">
+          <Key>
+            <PropertyRef Name="Phone_ID" />
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="Phone_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Number" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="Phone_Type_ID" Type="int" Nullable="false" />
+          <Property Name="User_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Phone_Type">
+          <Key>
+            <PropertyRef Name="Phone_Type_ID" />
+          </Key>
+          <Property Name="Phone_Type_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Phone_Type_Description" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Province">
+          <Key>
+            <PropertyRef Name="Province_ID" />
+          </Key>
+          <Property Name="Province_ID" Type="char" MaxLength="6" Nullable="false" />
+          <Property Name="Province_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Country_ID" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Purchase">
+          <Key>
+            <PropertyRef Name="Reserve_ID" />
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="Reserve_ID" Type="int" Nullable="false" />
+          <Property Name="User_ID" Type="int" Nullable="false" />
+          <Property Name="Purchase_Date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Reserve">
+          <Key>
+            <PropertyRef Name="Reserve_ID" />
+          </Key>
+          <Property Name="Reserve_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Room_Row" Type="tinyint" Nullable="false" />
+          <Property Name="Seating" Type="tinyint" Nullable="false" />
+          <Property Name="Reserve_Date" Type="datetime" Nullable="false" />
+          <Property Name="Cinema_Listing_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TUser">
+          <Key>
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="User_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="User_password" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="User_Type_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User_Type">
+          <Key>
+            <PropertyRef Name="User_Type_ID" />
+          </Key>
+          <Property Name="User_Type_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User_Description" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Actor_country">
+          <End Role="Country" Type="Self.Country" Multiplicity="1" />
+          <End Role="Actor" Type="Self.Actor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="Country_ID" />
+            </Principal>
+            <Dependent Role="Actor">
+              <PropertyRef Name="Country_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cinema_Listing_Cinema_Room">
+          <End Role="Cinema_Room" Type="Self.Cinema_Room" Multiplicity="1" />
+          <End Role="Cinema_Listing" Type="Self.Cinema_Listing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cinema_Room">
+              <PropertyRef Name="Cinema_Room_ID" />
+            </Principal>
+            <Dependent Role="Cinema_Listing">
+              <PropertyRef Name="Cinema_Room_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cinema_Listing_Movie">
+          <End Role="Movie" Type="Self.Movie" Multiplicity="1" />
+          <End Role="Cinema_Listing" Type="Self.Cinema_Listing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movie">
+              <PropertyRef Name="Movie_ID" />
+            </Principal>
+            <Dependent Role="Cinema_Listing">
+              <PropertyRef Name="Movie_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cinema_Province">
+          <End Role="Province" Type="Self.Province" Multiplicity="1" />
+          <End Role="Cinema" Type="Self.Cinema" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Province">
+              <PropertyRef Name="Province_ID" />
+            </Principal>
+            <Dependent Role="Cinema">
+              <PropertyRef Name="Province_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cinema_Room_Cinema">
+          <End Role="Cinema" Type="Self.Cinema" Multiplicity="1" />
+          <End Role="Cinema_Room" Type="Self.Cinema_Room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cinema">
+              <PropertyRef Name="Province_ID" />
+              <PropertyRef Name="Cinema_Name" />
+            </Principal>
+            <Dependent Role="Cinema_Room">
+              <PropertyRef Name="Province_ID" />
+              <PropertyRef Name="Cinema_Name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cinema_Room_Cinema_Room_Type">
+          <End Role="Cinema_Room_Type" Type="Self.Cinema_Room_Type" Multiplicity="1" />
+          <End Role="Cinema_Room" Type="Self.Cinema_Room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cinema_Room_Type">
+              <PropertyRef Name="Cinema_Room_Type_ID" />
+            </Principal>
+            <Dependent Role="Cinema_Room">
+              <PropertyRef Name="Cinema_Room_Type_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CreditCard_CreditCard_Type">
+          <End Role="CreditCard_Type" Type="Self.CreditCard_Type" Multiplicity="1" />
+          <End Role="CreditCard" Type="Self.CreditCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CreditCard_Type">
+              <PropertyRef Name="CreditCard_Type_ID" />
+            </Principal>
+            <Dependent Role="CreditCard">
+              <PropertyRef Name="CreditCard_Type_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CreditCard_User">
+          <End Role="TUser" Type="Self.TUser" Multiplicity="1" />
+          <End Role="CreditCard" Type="Self.CreditCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TUser">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="CreditCard">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Director_Country">
+          <End Role="Country" Type="Self.Country" Multiplicity="1" />
+          <End Role="Director" Type="Self.Director" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="Country_ID" />
+            </Principal>
+            <Dependent Role="Director">
+              <PropertyRef Name="Country_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Email_User">
+          <End Role="TUser" Type="Self.TUser" Multiplicity="1" />
+          <End Role="Email" Type="Self.Email" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TUser">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Email">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Movie_Actor_Actor">
+          <End Role="Actor" Type="Self.Actor" Multiplicity="1" />
+          <End Role="Movie_Actor" Type="Self.Movie_Actor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Actor">
+              <PropertyRef Name="Actor_ID" />
+            </Principal>
+            <Dependent Role="Movie_Actor">
+              <PropertyRef Name="Actor_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Movie_Actor_Movie">
+          <End Role="Movie" Type="Self.Movie" Multiplicity="1" />
+          <End Role="Movie_Actor" Type="Self.Movie_Actor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movie">
+              <PropertyRef Name="Movie_ID" />
+            </Principal>
+            <Dependent Role="Movie_Actor">
+              <PropertyRef Name="Movie_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Movie_Director_Director">
+          <End Role="Director" Type="Self.Director" Multiplicity="1" />
+          <End Role="Movie_Director" Type="Self.Movie_Director" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Director">
+              <PropertyRef Name="Director_ID" />
+            </Principal>
+            <Dependent Role="Movie_Director">
+              <PropertyRef Name="Director_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Movie_Director_Movie">
+          <End Role="Movie" Type="Self.Movie" Multiplicity="1" />
+          <End Role="Movie_Director" Type="Self.Movie_Director" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movie">
+              <PropertyRef Name="Movie_ID" />
+            </Principal>
+            <Dependent Role="Movie_Director">
+              <PropertyRef Name="Movie_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Movie_Film_Classification">
+          <End Role="Film_Classification" Type="Self.Film_Classification" Multiplicity="1" />
+          <End Role="Movie" Type="Self.Movie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Film_Classification">
+              <PropertyRef Name="Film_Classification_ID" />
+            </Principal>
+            <Dependent Role="Movie">
+              <PropertyRef Name="Film_Classification_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Movie_Genre_Genre">
+          <End Role="Genre" Type="Self.Genre" Multiplicity="1" />
+          <End Role="Movie_Genre" Type="Self.Movie_Genre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genre">
+              <PropertyRef Name="Genre_ID" />
+            </Principal>
+            <Dependent Role="Movie_Genre">
+              <PropertyRef Name="Genre_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Movie_Genre_Movie">
+          <End Role="Movie" Type="Self.Movie" Multiplicity="1" />
+          <End Role="Movie_Genre" Type="Self.Movie_Genre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movie">
+              <PropertyRef Name="Movie_ID" />
+            </Principal>
+            <Dependent Role="Movie_Genre">
+              <PropertyRef Name="Movie_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Phone_Phone_TYpe">
+          <End Role="Phone_Type" Type="Self.Phone_Type" Multiplicity="1" />
+          <End Role="Phone" Type="Self.Phone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Phone_Type">
+              <PropertyRef Name="Phone_Type_ID" />
+            </Principal>
+            <Dependent Role="Phone">
+              <PropertyRef Name="Phone_Type_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Phone_User">
+          <End Role="TUser" Type="Self.TUser" Multiplicity="1" />
+          <End Role="Phone" Type="Self.Phone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TUser">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Phone">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Province_Country">
+          <End Role="Country" Type="Self.Country" Multiplicity="1" />
+          <End Role="Province" Type="Self.Province" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="Country_ID" />
+            </Principal>
+            <Dependent Role="Province">
+              <PropertyRef Name="Country_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Purchase_Reserve">
+          <End Role="Reserve" Type="Self.Reserve" Multiplicity="1" />
+          <End Role="Purchase" Type="Self.Purchase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reserve">
+              <PropertyRef Name="Reserve_ID" />
+            </Principal>
+            <Dependent Role="Purchase">
+              <PropertyRef Name="Reserve_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Purchase_User">
+          <End Role="TUser" Type="Self.TUser" Multiplicity="1" />
+          <End Role="Purchase" Type="Self.Purchase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TUser">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Purchase">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reserve_ToTable">
+          <End Role="Cinema_Listing" Type="Self.Cinema_Listing" Multiplicity="1" />
+          <End Role="Reserve" Type="Self.Reserve" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cinema_Listing">
+              <PropertyRef Name="Cinema_Listing_ID" />
+            </Principal>
+            <Dependent Role="Reserve">
+              <PropertyRef Name="Cinema_Listing_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_User_Type">
+          <End Role="User_Type" Type="Self.User_Type" Multiplicity="1" />
+          <End Role="TUser" Type="Self.TUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_Type">
+              <PropertyRef Name="User_Type_ID" />
+            </Principal>
+            <Dependent Role="TUser">
+              <PropertyRef Name="User_Type_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="BestSellers_Movies" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="URLS" Type="varchar(max)" Mode="InOut" />
+          <Parameter Name="Name" Type="varchar" Mode="InOut" />
+        </Function>
+        <Function Name="BuyTickets" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userid" Type="int" Mode="In" />
+          <Parameter Name="roomrow" Type="tinyint" Mode="In" />
+          <Parameter Name="seating" Type="tinyint" Mode="In" />
+          <Parameter Name="cinemalistingid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="CambioPass" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="varchar" Mode="In" />
+          <Parameter Name="NuevoPass" Type="varchar" Mode="In" />
+          <Parameter Name="ViejoPass" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Change_Email" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="New_mail" Type="varchar" Mode="In" />
+          <Parameter Name="Confirmation_mail" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="CheckUserName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserName" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Create_Cinema_Room" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Roomrows" Type="tinyint" Mode="In" />
+          <Parameter Name="seating" Type="tinyint" Mode="In" />
+          <Parameter Name="booking" Type="bit" Mode="In" />
+          <Parameter Name="cinemaroomtypeid" Type="int" Mode="In" />
+          <Parameter Name="cinemaname" Type="varchar" Mode="In" />
+          <Parameter Name="provinceid" Type="char" Mode="In" />
+        </Function>
+        <Function Name="Create_Movie" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Movie_Sypnosis" Type="varchar(max)" Mode="In" />
+          <Parameter Name="Movie_title" Type="varchar" Mode="In" />
+          <Parameter Name="Movie_Date" Type="date" Mode="In" />
+          <Parameter Name="Movie_Duration" Type="time" Mode="In" />
+          <Parameter Name="Movie_Classification" Type="varchar" Mode="In" />
+          <Parameter Name="Movie_URL" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="CreateSesion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CinemaListingID" Type="int" Mode="In" />
+          <Parameter Name="Day" Type="date" Mode="In" />
+          <Parameter Name="StartTime" Type="time" Mode="In" />
+          <Parameter Name="EndingTime" Type="time" Mode="In" />
+          <Parameter Name="CinemaRoomID" Type="int" Mode="In" />
+          <Parameter Name="MovieID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Delete_Cinema_Room" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cinemaroomid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Delete_Movie" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MovieID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Delete_Sesion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DeleteCreditCard" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userid" Type="int" Mode="In" />
+          <Parameter Name="creditcardnumber" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="user" Type="varchar" Mode="In" />
+          <Parameter Name="password" Type="varchar" Mode="In" />
+          <Parameter Name="Useraccess" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="ModificarSesion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CinemaListingID" Type="int" Mode="In" />
+          <Parameter Name="Day" Type="date" Mode="In" />
+          <Parameter Name="StartTime" Type="time" Mode="In" />
+          <Parameter Name="EndingTime" Type="time" Mode="In" />
+          <Parameter Name="CinemaRoomID" Type="int" Mode="In" />
+          <Parameter Name="MovieID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Modify_Cinema_Room" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Roomrows" Type="tinyint" Mode="In" />
+          <Parameter Name="seating" Type="tinyint" Mode="In" />
+          <Parameter Name="booking" Type="bit" Mode="In" />
+          <Parameter Name="cinemaroomtypeid" Type="int" Mode="In" />
+          <Parameter Name="Cinema_roomid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Movie_Listing" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="Movie Listing">
+          <Parameter Name="Day" Type="date" Mode="InOut" />
+          <Parameter Name="StartTime" Type="time" Mode="InOut" />
+          <Parameter Name="EndingTime" Type="time" Mode="InOut" />
+          <Parameter Name="CinemaRoomID" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="Movie_Modified" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Movie_Sypnosis" Type="varchar(max)" Mode="In" />
+          <Parameter Name="Movie_title" Type="varchar" Mode="In" />
+          <Parameter Name="Movie_Date" Type="date" Mode="In" />
+          <Parameter Name="Movie_Duration" Type="time" Mode="In" />
+          <Parameter Name="Movie_Classification" Type="varchar" Mode="In" />
+          <Parameter Name="Movie_URL" Type="varchar(max)" Mode="In" />
+          <Parameter Name="MovieID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ProvinceCinema" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="provincename" Type="varchar" Mode="InOut" />
+        </Function>
+        <Function Name="RegisterCreditCard" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Expiry_Date" Type="date" Mode="In" />
+          <Parameter Name="Number" Type="varchar" Mode="In" />
+          <Parameter Name="CVV" Type="varchar" Mode="In" />
+          <Parameter Name="Proprietary_Name" Type="varchar" Mode="In" />
+          <Parameter Name="User_ID" Type="int" Mode="In" />
+          <Parameter Name="CreditCard_Type_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="RegisterUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="username" Type="varchar" Mode="In" />
+          <Parameter Name="password" Type="varchar" Mode="In" />
+          <Parameter Name="confirmpassword" Type="varchar" Mode="In" />
+          <Parameter Name="name" Type="varchar" Mode="In" />
+          <Parameter Name="lastname" Type="varchar" Mode="In" />
+          <Parameter Name="usertype" Type="int" Mode="In" />
+          <Parameter Name="email" Type="varchar" Mode="In" />
+          <Parameter Name="confirmemail" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="CinemaTickResModelStoreContainer">
+          <EntitySet Name="Actor" EntityType="Self.Actor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cinema" EntityType="Self.Cinema" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cinema_Listing" EntityType="Self.Cinema_Listing" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cinema_Room" EntityType="Self.Cinema_Room" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cinema_Room_Type" EntityType="Self.Cinema_Room_Type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CreditCard" EntityType="Self.CreditCard" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CreditCard_Type" EntityType="Self.CreditCard_Type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Director" EntityType="Self.Director" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Email" EntityType="Self.Email" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Film_Classification" EntityType="Self.Film_Classification" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Genre" EntityType="Self.Genre" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Movie" EntityType="Self.Movie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Movie_Actor" EntityType="Self.Movie_Actor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Movie_Director" EntityType="Self.Movie_Director" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Movie_Genre" EntityType="Self.Movie_Genre" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Phone" EntityType="Self.Phone" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Phone_Type" EntityType="Self.Phone_Type" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Province" EntityType="Self.Province" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Purchase" EntityType="Self.Purchase" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reserve" EntityType="Self.Reserve" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TUser" EntityType="Self.TUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User_Type" EntityType="Self.User_Type" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Actor_country" Association="Self.FK_Actor_country">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="Actor" EntitySet="Actor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cinema_Listing_Cinema_Room" Association="Self.FK_Cinema_Listing_Cinema_Room">
+            <End Role="Cinema_Room" EntitySet="Cinema_Room" />
+            <End Role="Cinema_Listing" EntitySet="Cinema_Listing" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cinema_Listing_Movie" Association="Self.FK_Cinema_Listing_Movie">
+            <End Role="Movie" EntitySet="Movie" />
+            <End Role="Cinema_Listing" EntitySet="Cinema_Listing" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cinema_Province" Association="Self.FK_Cinema_Province">
+            <End Role="Province" EntitySet="Province" />
+            <End Role="Cinema" EntitySet="Cinema" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cinema_Room_Cinema" Association="Self.FK_Cinema_Room_Cinema">
+            <End Role="Cinema" EntitySet="Cinema" />
+            <End Role="Cinema_Room" EntitySet="Cinema_Room" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cinema_Room_Cinema_Room_Type" Association="Self.FK_Cinema_Room_Cinema_Room_Type">
+            <End Role="Cinema_Room_Type" EntitySet="Cinema_Room_Type" />
+            <End Role="Cinema_Room" EntitySet="Cinema_Room" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CreditCard_CreditCard_Type" Association="Self.FK_CreditCard_CreditCard_Type">
+            <End Role="CreditCard_Type" EntitySet="CreditCard_Type" />
+            <End Role="CreditCard" EntitySet="CreditCard" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CreditCard_User" Association="Self.FK_CreditCard_User">
+            <End Role="TUser" EntitySet="TUser" />
+            <End Role="CreditCard" EntitySet="CreditCard" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Director_Country" Association="Self.FK_Director_Country">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="Director" EntitySet="Director" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Email_User" Association="Self.FK_Email_User">
+            <End Role="TUser" EntitySet="TUser" />
+            <End Role="Email" EntitySet="Email" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Movie_Actor_Actor" Association="Self.FK_Movie_Actor_Actor">
+            <End Role="Actor" EntitySet="Actor" />
+            <End Role="Movie_Actor" EntitySet="Movie_Actor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Movie_Actor_Movie" Association="Self.FK_Movie_Actor_Movie">
+            <End Role="Movie" EntitySet="Movie" />
+            <End Role="Movie_Actor" EntitySet="Movie_Actor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Movie_Director_Director" Association="Self.FK_Movie_Director_Director">
+            <End Role="Director" EntitySet="Director" />
+            <End Role="Movie_Director" EntitySet="Movie_Director" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Movie_Director_Movie" Association="Self.FK_Movie_Director_Movie">
+            <End Role="Movie" EntitySet="Movie" />
+            <End Role="Movie_Director" EntitySet="Movie_Director" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Movie_Film_Classification" Association="Self.FK_Movie_Film_Classification">
+            <End Role="Film_Classification" EntitySet="Film_Classification" />
+            <End Role="Movie" EntitySet="Movie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Movie_Genre_Genre" Association="Self.FK_Movie_Genre_Genre">
+            <End Role="Genre" EntitySet="Genre" />
+            <End Role="Movie_Genre" EntitySet="Movie_Genre" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Movie_Genre_Movie" Association="Self.FK_Movie_Genre_Movie">
+            <End Role="Movie" EntitySet="Movie" />
+            <End Role="Movie_Genre" EntitySet="Movie_Genre" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Phone_Phone_TYpe" Association="Self.FK_Phone_Phone_TYpe">
+            <End Role="Phone_Type" EntitySet="Phone_Type" />
+            <End Role="Phone" EntitySet="Phone" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Phone_User" Association="Self.FK_Phone_User">
+            <End Role="TUser" EntitySet="TUser" />
+            <End Role="Phone" EntitySet="Phone" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Province_Country" Association="Self.FK_Province_Country">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="Province" EntitySet="Province" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Purchase_Reserve" Association="Self.FK_Purchase_Reserve">
+            <End Role="Reserve" EntitySet="Reserve" />
+            <End Role="Purchase" EntitySet="Purchase" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Purchase_User" Association="Self.FK_Purchase_User">
+            <End Role="TUser" EntitySet="TUser" />
+            <End Role="Purchase" EntitySet="Purchase" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reserve_ToTable" Association="Self.FK_Reserve_ToTable">
+            <End Role="Cinema_Listing" EntitySet="Cinema_Listing" />
+            <End Role="Reserve" EntitySet="Reserve" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_User_Type" Association="Self.FK_User_User_Type">
+            <End Role="User_Type" EntitySet="User_Type" />
+            <End Role="TUser" EntitySet="TUser" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CinemaTickResModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Actor">
+          <Key>
+            <PropertyRef Name="Actor_ID" />
+          </Key>
+          <Property Name="Actor_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Actor_First_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Actor_Last_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Country_ID" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Country" Relationship="Self.FK_Actor_country" FromRole="Actor" ToRole="Country" />
+          <NavigationProperty Name="Movies" Relationship="Self.Movie_Actor" FromRole="Actor" ToRole="Movie" />
+        </EntityType>
+        <EntityType Name="Cinema">
+          <Key>
+            <PropertyRef Name="Province_ID" />
+            <PropertyRef Name="Cinema_Name" />
+          </Key>
+          <Property Name="Province_ID" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Cinema_Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Cinema_Address" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Location_URL" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Province" Relationship="Self.FK_Cinema_Province" FromRole="Cinema" ToRole="Province" />
+          <NavigationProperty Name="Cinema_Room" Relationship="Self.FK_Cinema_Room_Cinema" FromRole="Cinema" ToRole="Cinema_Room" />
+        </EntityType>
+        <EntityType Name="Cinema_Listing">
+          <Key>
+            <PropertyRef Name="Cinema_Listing_ID" />
+          </Key>
+          <Property Name="Cinema_Listing_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Day" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Start_Time" Type="Time" Nullable="false" Precision="0" />
+          <Property Name="Ending_Time" Type="Time" Nullable="false" Precision="0" />
+          <Property Name="Cinema_Room_ID" Type="Int32" Nullable="false" />
+          <Property Name="Movie_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cinema_Room" Relationship="Self.FK_Cinema_Listing_Cinema_Room" FromRole="Cinema_Listing" ToRole="Cinema_Room" />
+          <NavigationProperty Name="Movie" Relationship="Self.FK_Cinema_Listing_Movie" FromRole="Cinema_Listing" ToRole="Movie" />
+          <NavigationProperty Name="Reserves" Relationship="Self.FK_Reserve_ToTable" FromRole="Cinema_Listing" ToRole="Reserve" />
+        </EntityType>
+        <EntityType Name="Cinema_Room">
+          <Key>
+            <PropertyRef Name="Cinema_Room_ID" />
+          </Key>
+          <Property Name="Cinema_Room_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Room_Rows" Type="Byte" Nullable="false" />
+          <Property Name="Seating" Type="Byte" Nullable="false" />
+          <Property Name="Availability_booking" Type="Boolean" Nullable="false" />
+          <Property Name="Cinema_Room_Type_ID" Type="Int32" Nullable="false" />
+          <Property Name="Cinema_Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Province_ID" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Cinema" Relationship="Self.FK_Cinema_Room_Cinema" FromRole="Cinema_Room" ToRole="Cinema" />
+          <NavigationProperty Name="Cinema_Listing" Relationship="Self.FK_Cinema_Listing_Cinema_Room" FromRole="Cinema_Room" ToRole="Cinema_Listing" />
+          <NavigationProperty Name="Cinema_Room_Type" Relationship="Self.FK_Cinema_Room_Cinema_Room_Type" FromRole="Cinema_Room" ToRole="Cinema_Room_Type" />
+        </EntityType>
+        <EntityType Name="Cinema_Room_Type">
+          <Key>
+            <PropertyRef Name="Cinema_Room_Type_ID" />
+          </Key>
+          <Property Name="Cinema_Room_Type_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cinema_Room_Type_Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="Cinema_Room" Relationship="Self.FK_Cinema_Room_Cinema_Room_Type" FromRole="Cinema_Room_Type" ToRole="Cinema_Room" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="Country_ID" />
+          </Key>
+          <Property Name="Country_ID" Type="Int16" Nullable="false" />
+          <Property Name="Alpha2" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Alpha3" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LangCS" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LangDE" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LangEN" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LangES" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LangFR" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LangIT" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LangNL" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Actors" Relationship="Self.FK_Actor_country" FromRole="Country" ToRole="Actor" />
+          <NavigationProperty Name="Directors" Relationship="Self.FK_Director_Country" FromRole="Country" ToRole="Director" />
+          <NavigationProperty Name="Provinces" Relationship="Self.FK_Province_Country" FromRole="Country" ToRole="Province" />
+        </EntityType>
+        <EntityType Name="CreditCard">
+          <Key>
+            <PropertyRef Name="CreditCard_ID" />
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="CreditCard_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Expiry_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Number" Type="Binary" MaxLength="256" FixedLength="false" Nullable="false" />
+          <Property Name="CVV" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Proprietary_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="User_ID" Type="Int32" Nullable="false" />
+          <Property Name="CreditCard_Type_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CreditCard_Type" Relationship="Self.FK_CreditCard_CreditCard_Type" FromRole="CreditCard" ToRole="CreditCard_Type" />
+          <NavigationProperty Name="TUser" Relationship="Self.FK_CreditCard_User" FromRole="CreditCard" ToRole="TUser" />
+        </EntityType>
+        <EntityType Name="CreditCard_Type">
+          <Key>
+            <PropertyRef Name="CreditCard_Type_ID" />
+          </Key>
+          <Property Name="CreditCard_Type_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CreditCard_Description" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="CreditCards" Relationship="Self.FK_CreditCard_CreditCard_Type" FromRole="CreditCard_Type" ToRole="CreditCard" />
+        </EntityType>
+        <EntityType Name="Director">
+          <Key>
+            <PropertyRef Name="Director_ID" />
+          </Key>
+          <Property Name="Director_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Director_First_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Director_Last_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Country_ID" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Country" Relationship="Self.FK_Director_Country" FromRole="Director" ToRole="Country" />
+          <NavigationProperty Name="Movies" Relationship="Self.Movie_Director" FromRole="Director" ToRole="Movie" />
+        </EntityType>
+        <EntityType Name="Email">
+          <Key>
+            <PropertyRef Name="Email_ID" />
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="Email_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="User_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TUser" Relationship="Self.FK_Email_User" FromRole="Email" ToRole="TUser" />
+        </EntityType>
+        <EntityType Name="Film_Classification">
+          <Key>
+            <PropertyRef Name="Film_Classification_ID" />
+          </Key>
+          <Property Name="Film_Classification_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Classification_Description" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Movies" Relationship="Self.FK_Movie_Film_Classification" FromRole="Film_Classification" ToRole="Movie" />
+        </EntityType>
+        <EntityType Name="Genre">
+          <Key>
+            <PropertyRef Name="Genre_ID" />
+          </Key>
+          <Property Name="Genre_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Genre_Description" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Movies" Relationship="Self.Movie_Genre" FromRole="Genre" ToRole="Movie" />
+        </EntityType>
+        <EntityType Name="Movie">
+          <Key>
+            <PropertyRef Name="Movie_ID" />
+          </Key>
+          <Property Name="Movie_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Sypnosis" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Release_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Image_URL" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Film_Classification_ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="duration" Type="Time" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Cinema_Listing" Relationship="Self.FK_Cinema_Listing_Movie" FromRole="Movie" ToRole="Cinema_Listing" />
+          <NavigationProperty Name="Film_Classification" Relationship="Self.FK_Movie_Film_Classification" FromRole="Movie" ToRole="Film_Classification" />
+          <NavigationProperty Name="Actors" Relationship="Self.Movie_Actor" FromRole="Movie" ToRole="Actor" />
+          <NavigationProperty Name="Directors" Relationship="Self.Movie_Director" FromRole="Movie" ToRole="Director" />
+          <NavigationProperty Name="Genres" Relationship="Self.Movie_Genre" FromRole="Movie" ToRole="Genre" />
+        </EntityType>
+        <EntityType Name="Phone">
+          <Key>
+            <PropertyRef Name="Phone_ID" />
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="Phone_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Number" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Phone_Type_ID" Type="Int32" Nullable="false" />
+          <Property Name="User_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Phone_Type" Relationship="Self.FK_Phone_Phone_TYpe" FromRole="Phone" ToRole="Phone_Type" />
+          <NavigationProperty Name="TUser" Relationship="Self.FK_Phone_User" FromRole="Phone" ToRole="TUser" />
+        </EntityType>
+        <EntityType Name="Phone_Type">
+          <Key>
+            <PropertyRef Name="Phone_Type_ID" />
+          </Key>
+          <Property Name="Phone_Type_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Phone_Type_Description" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Phones" Relationship="Self.FK_Phone_Phone_TYpe" FromRole="Phone_Type" ToRole="Phone" />
+        </EntityType>
+        <EntityType Name="Province">
+          <Key>
+            <PropertyRef Name="Province_ID" />
+          </Key>
+          <Property Name="Province_ID" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Province_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Country_ID" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Cinemas" Relationship="Self.FK_Cinema_Province" FromRole="Province" ToRole="Cinema" />
+          <NavigationProperty Name="Country" Relationship="Self.FK_Province_Country" FromRole="Province" ToRole="Country" />
+        </EntityType>
+        <EntityType Name="Purchase">
+          <Key>
+            <PropertyRef Name="Reserve_ID" />
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="Reserve_ID" Type="Int32" Nullable="false" />
+          <Property Name="User_ID" Type="Int32" Nullable="false" />
+          <Property Name="Purchase_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Reserve" Relationship="Self.FK_Purchase_Reserve" FromRole="Purchase" ToRole="Reserve" />
+          <NavigationProperty Name="TUser" Relationship="Self.FK_Purchase_User" FromRole="Purchase" ToRole="TUser" />
+        </EntityType>
+        <EntityType Name="Reserve">
+          <Key>
+            <PropertyRef Name="Reserve_ID" />
+          </Key>
+          <Property Name="Reserve_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Room_Row" Type="Byte" Nullable="false" />
+          <Property Name="Seating" Type="Byte" Nullable="false" />
+          <Property Name="Reserve_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Cinema_Listing_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cinema_Listing" Relationship="Self.FK_Reserve_ToTable" FromRole="Reserve" ToRole="Cinema_Listing" />
+          <NavigationProperty Name="Purchases" Relationship="Self.FK_Purchase_Reserve" FromRole="Reserve" ToRole="Purchase" />
+        </EntityType>
+        <EntityType Name="TUser">
+          <Key>
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="User_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="User_password" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="User_Type_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CreditCards" Relationship="Self.FK_CreditCard_User" FromRole="TUser" ToRole="CreditCard" />
+          <NavigationProperty Name="Emails" Relationship="Self.FK_Email_User" FromRole="TUser" ToRole="Email" />
+          <NavigationProperty Name="Phones" Relationship="Self.FK_Phone_User" FromRole="TUser" ToRole="Phone" />
+          <NavigationProperty Name="Purchases" Relationship="Self.FK_Purchase_User" FromRole="TUser" ToRole="Purchase" />
+          <NavigationProperty Name="User_Type" Relationship="Self.FK_User_User_Type" FromRole="TUser" ToRole="User_Type" />
+        </EntityType>
+        <EntityType Name="User_Type">
+          <Key>
+            <PropertyRef Name="User_Type_ID" />
+          </Key>
+          <Property Name="User_Type_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_Description" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="TUsers" Relationship="Self.FK_User_User_Type" FromRole="User_Type" ToRole="TUser" />
+        </EntityType>
+        <Association Name="FK_Actor_country">
+          <End Role="Country" Type="Self.Country" Multiplicity="1" />
+          <End Role="Actor" Type="Self.Actor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="Country_ID" />
+            </Principal>
+            <Dependent Role="Actor">
+              <PropertyRef Name="Country_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cinema_Province">
+          <End Role="Province" Type="Self.Province" Multiplicity="1" />
+          <End Role="Cinema" Type="Self.Cinema" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Province">
+              <PropertyRef Name="Province_ID" />
+            </Principal>
+            <Dependent Role="Cinema">
+              <PropertyRef Name="Province_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cinema_Room_Cinema">
+          <End Role="Cinema" Type="Self.Cinema" Multiplicity="1" />
+          <End Role="Cinema_Room" Type="Self.Cinema_Room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cinema">
+              <PropertyRef Name="Province_ID" />
+              <PropertyRef Name="Cinema_Name" />
+            </Principal>
+            <Dependent Role="Cinema_Room">
+              <PropertyRef Name="Province_ID" />
+              <PropertyRef Name="Cinema_Name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cinema_Listing_Cinema_Room">
+          <End Role="Cinema_Room" Type="Self.Cinema_Room" Multiplicity="1" />
+          <End Role="Cinema_Listing" Type="Self.Cinema_Listing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cinema_Room">
+              <PropertyRef Name="Cinema_Room_ID" />
+            </Principal>
+            <Dependent Role="Cinema_Listing">
+              <PropertyRef Name="Cinema_Room_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cinema_Listing_Movie">
+          <End Role="Movie" Type="Self.Movie" Multiplicity="1" />
+          <End Role="Cinema_Listing" Type="Self.Cinema_Listing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movie">
+              <PropertyRef Name="Movie_ID" />
+            </Principal>
+            <Dependent Role="Cinema_Listing">
+              <PropertyRef Name="Movie_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reserve_ToTable">
+          <End Role="Cinema_Listing" Type="Self.Cinema_Listing" Multiplicity="1" />
+          <End Role="Reserve" Type="Self.Reserve" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cinema_Listing">
+              <PropertyRef Name="Cinema_Listing_ID" />
+            </Principal>
+            <Dependent Role="Reserve">
+              <PropertyRef Name="Cinema_Listing_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cinema_Room_Cinema_Room_Type">
+          <End Role="Cinema_Room_Type" Type="Self.Cinema_Room_Type" Multiplicity="1" />
+          <End Role="Cinema_Room" Type="Self.Cinema_Room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cinema_Room_Type">
+              <PropertyRef Name="Cinema_Room_Type_ID" />
+            </Principal>
+            <Dependent Role="Cinema_Room">
+              <PropertyRef Name="Cinema_Room_Type_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Director_Country">
+          <End Role="Country" Type="Self.Country" Multiplicity="1" />
+          <End Role="Director" Type="Self.Director" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="Country_ID" />
+            </Principal>
+            <Dependent Role="Director">
+              <PropertyRef Name="Country_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Province_Country">
+          <End Role="Country" Type="Self.Country" Multiplicity="1" />
+          <End Role="Province" Type="Self.Province" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="Country_ID" />
+            </Principal>
+            <Dependent Role="Province">
+              <PropertyRef Name="Country_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CreditCard_CreditCard_Type">
+          <End Role="CreditCard_Type" Type="Self.CreditCard_Type" Multiplicity="1" />
+          <End Role="CreditCard" Type="Self.CreditCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CreditCard_Type">
+              <PropertyRef Name="CreditCard_Type_ID" />
+            </Principal>
+            <Dependent Role="CreditCard">
+              <PropertyRef Name="CreditCard_Type_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CreditCard_User">
+          <End Role="TUser" Type="Self.TUser" Multiplicity="1" />
+          <End Role="CreditCard" Type="Self.CreditCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TUser">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="CreditCard">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Email_User">
+          <End Role="TUser" Type="Self.TUser" Multiplicity="1" />
+          <End Role="Email" Type="Self.Email" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TUser">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Email">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Movie_Film_Classification">
+          <End Role="Film_Classification" Type="Self.Film_Classification" Multiplicity="1" />
+          <End Role="Movie" Type="Self.Movie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Film_Classification">
+              <PropertyRef Name="Film_Classification_ID" />
+            </Principal>
+            <Dependent Role="Movie">
+              <PropertyRef Name="Film_Classification_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Phone_Phone_TYpe">
+          <End Role="Phone_Type" Type="Self.Phone_Type" Multiplicity="1" />
+          <End Role="Phone" Type="Self.Phone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Phone_Type">
+              <PropertyRef Name="Phone_Type_ID" />
+            </Principal>
+            <Dependent Role="Phone">
+              <PropertyRef Name="Phone_Type_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Phone_User">
+          <End Role="TUser" Type="Self.TUser" Multiplicity="1" />
+          <End Role="Phone" Type="Self.Phone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TUser">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Phone">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Purchase_Reserve">
+          <End Role="Reserve" Type="Self.Reserve" Multiplicity="1" />
+          <End Role="Purchase" Type="Self.Purchase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reserve">
+              <PropertyRef Name="Reserve_ID" />
+            </Principal>
+            <Dependent Role="Purchase">
+              <PropertyRef Name="Reserve_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Purchase_User">
+          <End Role="TUser" Type="Self.TUser" Multiplicity="1" />
+          <End Role="Purchase" Type="Self.Purchase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TUser">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Purchase">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_User_Type">
+          <End Role="User_Type" Type="Self.User_Type" Multiplicity="1" />
+          <End Role="TUser" Type="Self.TUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_Type">
+              <PropertyRef Name="User_Type_ID" />
+            </Principal>
+            <Dependent Role="TUser">
+              <PropertyRef Name="User_Type_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Movie_Actor">
+          <End Role="Actor" Type="Self.Actor" Multiplicity="*" />
+          <End Role="Movie" Type="Self.Movie" Multiplicity="*" />
+        </Association>
+        <Association Name="Movie_Director">
+          <End Role="Director" Type="Self.Director" Multiplicity="*" />
+          <End Role="Movie" Type="Self.Movie" Multiplicity="*" />
+        </Association>
+        <Association Name="Movie_Genre">
+          <End Role="Genre" Type="Self.Genre" Multiplicity="*" />
+          <End Role="Movie" Type="Self.Movie" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="CinemaTickResEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Actors" EntityType="Self.Actor" />
+          <EntitySet Name="Cinemas" EntityType="Self.Cinema" />
+          <EntitySet Name="Cinema_Listing" EntityType="Self.Cinema_Listing" />
+          <EntitySet Name="Cinema_Room" EntityType="Self.Cinema_Room" />
+          <EntitySet Name="Cinema_Room_Type" EntityType="Self.Cinema_Room_Type" />
+          <EntitySet Name="Countries" EntityType="Self.Country" />
+          <EntitySet Name="CreditCards" EntityType="Self.CreditCard" />
+          <EntitySet Name="CreditCard_Type" EntityType="Self.CreditCard_Type" />
+          <EntitySet Name="Directors" EntityType="Self.Director" />
+          <EntitySet Name="Emails" EntityType="Self.Email" />
+          <EntitySet Name="Film_Classification" EntityType="Self.Film_Classification" />
+          <EntitySet Name="Genres" EntityType="Self.Genre" />
+          <EntitySet Name="Movies" EntityType="Self.Movie" />
+          <EntitySet Name="Phones" EntityType="Self.Phone" />
+          <EntitySet Name="Phone_Type" EntityType="Self.Phone_Type" />
+          <EntitySet Name="Provinces" EntityType="Self.Province" />
+          <EntitySet Name="Purchases" EntityType="Self.Purchase" />
+          <EntitySet Name="Reserves" EntityType="Self.Reserve" />
+          <EntitySet Name="TUsers" EntityType="Self.TUser" />
+          <EntitySet Name="User_Type" EntityType="Self.User_Type" />
+          <AssociationSet Name="FK_Actor_country" Association="Self.FK_Actor_country">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="Actor" EntitySet="Actors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cinema_Province" Association="Self.FK_Cinema_Province">
+            <End Role="Province" EntitySet="Provinces" />
+            <End Role="Cinema" EntitySet="Cinemas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cinema_Room_Cinema" Association="Self.FK_Cinema_Room_Cinema">
+            <End Role="Cinema" EntitySet="Cinemas" />
+            <End Role="Cinema_Room" EntitySet="Cinema_Room" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cinema_Listing_Cinema_Room" Association="Self.FK_Cinema_Listing_Cinema_Room">
+            <End Role="Cinema_Room" EntitySet="Cinema_Room" />
+            <End Role="Cinema_Listing" EntitySet="Cinema_Listing" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cinema_Listing_Movie" Association="Self.FK_Cinema_Listing_Movie">
+            <End Role="Movie" EntitySet="Movies" />
+            <End Role="Cinema_Listing" EntitySet="Cinema_Listing" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reserve_ToTable" Association="Self.FK_Reserve_ToTable">
+            <End Role="Cinema_Listing" EntitySet="Cinema_Listing" />
+            <End Role="Reserve" EntitySet="Reserves" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cinema_Room_Cinema_Room_Type" Association="Self.FK_Cinema_Room_Cinema_Room_Type">
+            <End Role="Cinema_Room_Type" EntitySet="Cinema_Room_Type" />
+            <End Role="Cinema_Room" EntitySet="Cinema_Room" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Director_Country" Association="Self.FK_Director_Country">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="Director" EntitySet="Directors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Province_Country" Association="Self.FK_Province_Country">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="Province" EntitySet="Provinces" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CreditCard_CreditCard_Type" Association="Self.FK_CreditCard_CreditCard_Type">
+            <End Role="CreditCard_Type" EntitySet="CreditCard_Type" />
+            <End Role="CreditCard" EntitySet="CreditCards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CreditCard_User" Association="Self.FK_CreditCard_User">
+            <End Role="TUser" EntitySet="TUsers" />
+            <End Role="CreditCard" EntitySet="CreditCards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Email_User" Association="Self.FK_Email_User">
+            <End Role="TUser" EntitySet="TUsers" />
+            <End Role="Email" EntitySet="Emails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Movie_Film_Classification" Association="Self.FK_Movie_Film_Classification">
+            <End Role="Film_Classification" EntitySet="Film_Classification" />
+            <End Role="Movie" EntitySet="Movies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Phone_Phone_TYpe" Association="Self.FK_Phone_Phone_TYpe">
+            <End Role="Phone_Type" EntitySet="Phone_Type" />
+            <End Role="Phone" EntitySet="Phones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Phone_User" Association="Self.FK_Phone_User">
+            <End Role="TUser" EntitySet="TUsers" />
+            <End Role="Phone" EntitySet="Phones" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Purchase_Reserve" Association="Self.FK_Purchase_Reserve">
+            <End Role="Reserve" EntitySet="Reserves" />
+            <End Role="Purchase" EntitySet="Purchases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Purchase_User" Association="Self.FK_Purchase_User">
+            <End Role="TUser" EntitySet="TUsers" />
+            <End Role="Purchase" EntitySet="Purchases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_User_Type" Association="Self.FK_User_User_Type">
+            <End Role="User_Type" EntitySet="User_Type" />
+            <End Role="TUser" EntitySet="TUsers" />
+          </AssociationSet>
+          <AssociationSet Name="Movie_Actor" Association="Self.Movie_Actor">
+            <End Role="Actor" EntitySet="Actors" />
+            <End Role="Movie" EntitySet="Movies" />
+          </AssociationSet>
+          <AssociationSet Name="Movie_Director" Association="Self.Movie_Director">
+            <End Role="Director" EntitySet="Directors" />
+            <End Role="Movie" EntitySet="Movies" />
+          </AssociationSet>
+          <AssociationSet Name="Movie_Genre" Association="Self.Movie_Genre">
+            <End Role="Genre" EntitySet="Genres" />
+            <End Role="Movie" EntitySet="Movies" />
+          </AssociationSet>
+          <FunctionImport Name="BestSellers_Movies">
+            <Parameter Name="URLS" Mode="InOut" Type="String" />
+            <Parameter Name="Name" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="BuyTickets">
+            <Parameter Name="userid" Mode="In" Type="Int32" />
+            <Parameter Name="roomrow" Mode="In" Type="Byte" />
+            <Parameter Name="seating" Mode="In" Type="Byte" />
+            <Parameter Name="cinemalistingid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="CambioPass">
+            <Parameter Name="ID" Mode="In" Type="String" />
+            <Parameter Name="NuevoPass" Mode="In" Type="String" />
+            <Parameter Name="ViejoPass" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Change_Email">
+            <Parameter Name="New_mail" Mode="In" Type="String" />
+            <Parameter Name="Confirmation_mail" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="CheckUserName" ReturnType="Collection(Int32)">
+            <Parameter Name="UserName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Create_Cinema_Room">
+            <Parameter Name="Roomrows" Mode="In" Type="Byte" />
+            <Parameter Name="seating" Mode="In" Type="Byte" />
+            <Parameter Name="booking" Mode="In" Type="Boolean" />
+            <Parameter Name="cinemaroomtypeid" Mode="In" Type="Int32" />
+            <Parameter Name="cinemaname" Mode="In" Type="String" />
+            <Parameter Name="provinceid" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Create_Movie">
+            <Parameter Name="Movie_Sypnosis" Mode="In" Type="String" />
+            <Parameter Name="Movie_title" Mode="In" Type="String" />
+            <Parameter Name="Movie_Date" Mode="In" Type="DateTime" />
+            <Parameter Name="Movie_Duration" Mode="In" Type="Time" />
+            <Parameter Name="Movie_Classification" Mode="In" Type="String" />
+            <Parameter Name="Movie_URL" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="CreateSesion">
+            <Parameter Name="CinemaListingID" Mode="In" Type="Int32" />
+            <Parameter Name="Day" Mode="In" Type="DateTime" />
+            <Parameter Name="StartTime" Mode="In" Type="Time" />
+            <Parameter Name="EndingTime" Mode="In" Type="Time" />
+            <Parameter Name="CinemaRoomID" Mode="In" Type="Int32" />
+            <Parameter Name="MovieID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Delete_Cinema_Room">
+            <Parameter Name="cinemaroomid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Delete_Movie">
+            <Parameter Name="MovieID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Delete_Sesion">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteCreditCard">
+            <Parameter Name="userid" Mode="In" Type="Int32" />
+            <Parameter Name="creditcardnumber" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Login">
+            <Parameter Name="user" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+            <Parameter Name="Useraccess" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ModificarSesion">
+            <Parameter Name="CinemaListingID" Mode="In" Type="Int32" />
+            <Parameter Name="Day" Mode="In" Type="DateTime" />
+            <Parameter Name="StartTime" Mode="In" Type="Time" />
+            <Parameter Name="EndingTime" Mode="In" Type="Time" />
+            <Parameter Name="CinemaRoomID" Mode="In" Type="Int32" />
+            <Parameter Name="MovieID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Modify_Cinema_Room">
+            <Parameter Name="Roomrows" Mode="In" Type="Byte" />
+            <Parameter Name="seating" Mode="In" Type="Byte" />
+            <Parameter Name="booking" Mode="In" Type="Boolean" />
+            <Parameter Name="cinemaroomtypeid" Mode="In" Type="Int32" />
+            <Parameter Name="Cinema_roomid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Movie_Listing" ReturnType="Collection(CinemaTickResModel.Movie_Listing_Result)">
+            <Parameter Name="Day" Mode="InOut" Type="DateTime" />
+            <Parameter Name="StartTime" Mode="InOut" Type="Time" />
+            <Parameter Name="EndingTime" Mode="InOut" Type="Time" />
+            <Parameter Name="CinemaRoomID" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Movie_Modified">
+            <Parameter Name="Movie_Sypnosis" Mode="In" Type="String" />
+            <Parameter Name="Movie_title" Mode="In" Type="String" />
+            <Parameter Name="Movie_Date" Mode="In" Type="DateTime" />
+            <Parameter Name="Movie_Duration" Mode="In" Type="Time" />
+            <Parameter Name="Movie_Classification" Mode="In" Type="String" />
+            <Parameter Name="Movie_URL" Mode="In" Type="String" />
+            <Parameter Name="MovieID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ProvinceCinema">
+            <Parameter Name="provincename" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="RegisterCreditCard">
+            <Parameter Name="Expiry_Date" Mode="In" Type="DateTime" />
+            <Parameter Name="Number" Mode="In" Type="String" />
+            <Parameter Name="CVV" Mode="In" Type="String" />
+            <Parameter Name="Proprietary_Name" Mode="In" Type="String" />
+            <Parameter Name="User_ID" Mode="In" Type="Int32" />
+            <Parameter Name="CreditCard_Type_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="RegisterUser">
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+            <Parameter Name="confirmpassword" Mode="In" Type="String" />
+            <Parameter Name="name" Mode="In" Type="String" />
+            <Parameter Name="lastname" Mode="In" Type="String" />
+            <Parameter Name="usertype" Mode="In" Type="Int32" />
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="confirmemail" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="Movie_Listing_Result">
+          <Property Type="DateTime" Name="Day" Nullable="false" />
+          <Property Type="Time" Name="Start_Time" Nullable="false" />
+          <Property Type="Time" Name="Ending_Time" Nullable="false" />
+          <Property Type="Int32" Name="Cinema_Room_ID" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CinemaTickResModelStoreContainer" CdmEntityContainer="CinemaTickResEntities">
+          <EntitySetMapping Name="Actors">
+            <EntityTypeMapping TypeName="CinemaTickResModel.Actor">
+              <MappingFragment StoreEntitySet="Actor">
+                <ScalarProperty Name="Actor_ID" ColumnName="Actor_ID" />
+                <ScalarProperty Name="Actor_First_Name" ColumnName="Actor_First_Name" />
+                <ScalarProperty Name="Actor_Last_Name" ColumnName="Actor_Last_Name" />
+                <ScalarProperty Name="Country_ID" ColumnName="Country_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cinemas">
+            <EntityTypeMapping TypeName="CinemaTickResModel.Cinema">
+              <MappingFragment StoreEntitySet="Cinema">
+                <ScalarProperty Name="Province_ID" ColumnName="Province_ID" />
+                <ScalarProperty Name="Cinema_Name" ColumnName="Cinema_Name" />
+                <ScalarProperty Name="Cinema_Address" ColumnName="Cinema_Address" />
+                <ScalarProperty Name="Location_URL" ColumnName="Location_URL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cinema_Listing">
+            <EntityTypeMapping TypeName="CinemaTickResModel.Cinema_Listing">
+              <MappingFragment StoreEntitySet="Cinema_Listing">
+                <ScalarProperty Name="Cinema_Listing_ID" ColumnName="Cinema_Listing_ID" />
+                <ScalarProperty Name="Day" ColumnName="Day" />
+                <ScalarProperty Name="Start_Time" ColumnName="Start_Time" />
+                <ScalarProperty Name="Ending_Time" ColumnName="Ending_Time" />
+                <ScalarProperty Name="Cinema_Room_ID" ColumnName="Cinema_Room_ID" />
+                <ScalarProperty Name="Movie_ID" ColumnName="Movie_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cinema_Room">
+            <EntityTypeMapping TypeName="CinemaTickResModel.Cinema_Room">
+              <MappingFragment StoreEntitySet="Cinema_Room">
+                <ScalarProperty Name="Cinema_Room_ID" ColumnName="Cinema_Room_ID" />
+                <ScalarProperty Name="Room_Rows" ColumnName="Room_Rows" />
+                <ScalarProperty Name="Seating" ColumnName="Seating" />
+                <ScalarProperty Name="Availability_booking" ColumnName="Availability_booking" />
+                <ScalarProperty Name="Cinema_Room_Type_ID" ColumnName="Cinema_Room_Type_ID" />
+                <ScalarProperty Name="Cinema_Name" ColumnName="Cinema_Name" />
+                <ScalarProperty Name="Province_ID" ColumnName="Province_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cinema_Room_Type">
+            <EntityTypeMapping TypeName="CinemaTickResModel.Cinema_Room_Type">
+              <MappingFragment StoreEntitySet="Cinema_Room_Type">
+                <ScalarProperty Name="Cinema_Room_Type_ID" ColumnName="Cinema_Room_Type_ID" />
+                <ScalarProperty Name="Cinema_Room_Type_Description" ColumnName="Cinema_Room_Type_Description" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Countries">
+            <EntityTypeMapping TypeName="CinemaTickResModel.Country">
+              <MappingFragment StoreEntitySet="Country">
+                <ScalarProperty Name="Country_ID" ColumnName="Country_ID" />
+                <ScalarProperty Name="Alpha2" ColumnName="Alpha2" />
+                <ScalarProperty Name="Alpha3" ColumnName="Alpha3" />
+                <ScalarProperty Name="LangCS" ColumnName="LangCS" />
+                <ScalarProperty Name="LangDE" ColumnName="LangDE" />
+                <ScalarProperty Name="LangEN" ColumnName="LangEN" />
+                <ScalarProperty Name="LangES" ColumnName="LangES" />
+                <ScalarProperty Name="LangFR" ColumnName="LangFR" />
+                <ScalarProperty Name="LangIT" ColumnName="LangIT" />
+                <ScalarProperty Name="LangNL" ColumnName="LangNL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CreditCards">
+            <EntityTypeMapping TypeName="CinemaTickResModel.CreditCard">
+              <MappingFragment StoreEntitySet="CreditCard">
+                <ScalarProperty Name="CreditCard_ID" ColumnName="CreditCard_ID" />
+                <ScalarProperty Name="Expiry_Date" ColumnName="Expiry_Date" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="CVV" ColumnName="CVV" />
+                <ScalarProperty Name="Proprietary_Name" ColumnName="Proprietary_Name" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="CreditCard_Type_ID" ColumnName="CreditCard_Type_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CreditCard_Type">
+            <EntityTypeMapping TypeName="CinemaTickResModel.CreditCard_Type">
+              <MappingFragment StoreEntitySet="CreditCard_Type">
+                <ScalarProperty Name="CreditCard_Type_ID" ColumnName="CreditCard_Type_ID" />
+                <ScalarProperty Name="CreditCard_Description" ColumnName="CreditCard_Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Directors">
+            <EntityTypeMapping TypeName="CinemaTickResModel.Director">
+              <MappingFragment StoreEntitySet="Director">
+                <ScalarProperty Name="Director_ID" ColumnName="Director_ID" />
+                <ScalarProperty Name="Director_First_Name" ColumnName="Director_First_Name" />
+                <ScalarProperty Name="Director_Last_Name" ColumnName="Director_Last_Name" />
+                <ScalarProperty Name="Country_ID" ColumnName="Country_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Emails">
+            <EntityTypeMapping TypeName="CinemaTickResModel.Email">
+              <MappingFragment StoreEntitySet="Email">
+                <ScalarProperty Name="Email_ID" ColumnName="Email_ID" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Film_Classification">
+            <EntityTypeMapping TypeName="CinemaTickResModel.Film_Classification">
+              <MappingFragment StoreEntitySet="Film_Classification">
+                <ScalarProperty Name="Film_Classification_ID" ColumnName="Film_Classification_ID" />
+                <ScalarProperty Name="Classification_Description" ColumnName="Classification_Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Genres">
+            <EntityTypeMapping TypeName="CinemaTickResModel.Genre">
+              <MappingFragment StoreEntitySet="Genre">
+                <ScalarProperty Name="Genre_ID" ColumnName="Genre_ID" />
+                <ScalarProperty Name="Genre_Description" ColumnName="Genre_Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Movies">
+            <EntityTypeMapping TypeName="CinemaTickResModel.Movie">
+              <MappingFragment StoreEntitySet="Movie">
+                <ScalarProperty Name="Movie_ID" ColumnName="Movie_ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Sypnosis" ColumnName="Sypnosis" />
+                <ScalarProperty Name="Release_Date" ColumnName="Release_Date" />
+                <ScalarProperty Name="Image_URL" ColumnName="Image_URL" />
+                <ScalarProperty Name="Film_Classification_ID" ColumnName="Film_Classification_ID" />
+                <ScalarProperty Name="duration" ColumnName="duration" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Phones">
+            <EntityTypeMapping TypeName="CinemaTickResModel.Phone">
+              <MappingFragment StoreEntitySet="Phone">
+                <ScalarProperty Name="Phone_ID" ColumnName="Phone_ID" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="Phone_Type_ID" ColumnName="Phone_Type_ID" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Phone_Type">
+            <EntityTypeMapping TypeName="CinemaTickResModel.Phone_Type">
+              <MappingFragment StoreEntitySet="Phone_Type">
+                <ScalarProperty Name="Phone_Type_ID" ColumnName="Phone_Type_ID" />
+                <ScalarProperty Name="Phone_Type_Description" ColumnName="Phone_Type_Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Provinces">
+            <EntityTypeMapping TypeName="CinemaTickResModel.Province">
+              <MappingFragment StoreEntitySet="Province">
+                <ScalarProperty Name="Province_ID" ColumnName="Province_ID" />
+                <ScalarProperty Name="Province_Name" ColumnName="Province_Name" />
+                <ScalarProperty Name="Country_ID" ColumnName="Country_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Purchases">
+            <EntityTypeMapping TypeName="CinemaTickResModel.Purchase">
+              <MappingFragment StoreEntitySet="Purchase">
+                <ScalarProperty Name="Reserve_ID" ColumnName="Reserve_ID" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Purchase_Date" ColumnName="Purchase_Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reserves">
+            <EntityTypeMapping TypeName="CinemaTickResModel.Reserve">
+              <MappingFragment StoreEntitySet="Reserve">
+                <ScalarProperty Name="Reserve_ID" ColumnName="Reserve_ID" />
+                <ScalarProperty Name="Room_Row" ColumnName="Room_Row" />
+                <ScalarProperty Name="Seating" ColumnName="Seating" />
+                <ScalarProperty Name="Reserve_Date" ColumnName="Reserve_Date" />
+                <ScalarProperty Name="Cinema_Listing_ID" ColumnName="Cinema_Listing_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TUsers">
+            <EntityTypeMapping TypeName="CinemaTickResModel.TUser">
+              <MappingFragment StoreEntitySet="TUser">
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="User_password" ColumnName="User_password" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="User_Type_ID" ColumnName="User_Type_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User_Type">
+            <EntityTypeMapping TypeName="CinemaTickResModel.User_Type">
+              <MappingFragment StoreEntitySet="User_Type">
+                <ScalarProperty Name="User_Type_ID" ColumnName="User_Type_ID" />
+                <ScalarProperty Name="User_Description" ColumnName="User_Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Movie_Actor" TypeName="CinemaTickResModel.Movie_Actor" StoreEntitySet="Movie_Actor">
+            <EndProperty Name="Actor">
+              <ScalarProperty Name="Actor_ID" ColumnName="Actor_ID" />
+            </EndProperty>
+            <EndProperty Name="Movie">
+              <ScalarProperty Name="Movie_ID" ColumnName="Movie_ID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Movie_Director" TypeName="CinemaTickResModel.Movie_Director" StoreEntitySet="Movie_Director">
+            <EndProperty Name="Director">
+              <ScalarProperty Name="Director_ID" ColumnName="Director_ID" />
+            </EndProperty>
+            <EndProperty Name="Movie">
+              <ScalarProperty Name="Movie_ID" ColumnName="Movie_ID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="Movie_Genre" TypeName="CinemaTickResModel.Movie_Genre" StoreEntitySet="Movie_Genre">
+            <EndProperty Name="Genre">
+              <ScalarProperty Name="Genre_ID" ColumnName="Genre_ID" />
+            </EndProperty>
+            <EndProperty Name="Movie">
+              <ScalarProperty Name="Movie_ID" ColumnName="Movie_ID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="BestSellers_Movies" FunctionName="CinemaTickResModel.Store.BestSellers_Movies" />
+          <FunctionImportMapping FunctionImportName="BuyTickets" FunctionName="CinemaTickResModel.Store.BuyTickets" />
+          <FunctionImportMapping FunctionImportName="CambioPass" FunctionName="CinemaTickResModel.Store.CambioPass" />
+          <FunctionImportMapping FunctionImportName="Change_Email" FunctionName="CinemaTickResModel.Store.Change_Email" />
+          <FunctionImportMapping FunctionImportName="CheckUserName" FunctionName="CinemaTickResModel.Store.CheckUserName" />
+          <FunctionImportMapping FunctionImportName="Create_Cinema_Room" FunctionName="CinemaTickResModel.Store.Create_Cinema_Room" />
+          <FunctionImportMapping FunctionImportName="Create_Movie" FunctionName="CinemaTickResModel.Store.Create_Movie" />
+          <FunctionImportMapping FunctionImportName="CreateSesion" FunctionName="CinemaTickResModel.Store.CreateSesion" />
+          <FunctionImportMapping FunctionImportName="Delete_Cinema_Room" FunctionName="CinemaTickResModel.Store.Delete_Cinema_Room" />
+          <FunctionImportMapping FunctionImportName="Delete_Movie" FunctionName="CinemaTickResModel.Store.Delete_Movie" />
+          <FunctionImportMapping FunctionImportName="Delete_Sesion" FunctionName="CinemaTickResModel.Store.Delete_Sesion" />
+          <FunctionImportMapping FunctionImportName="DeleteCreditCard" FunctionName="CinemaTickResModel.Store.DeleteCreditCard" />
+          <FunctionImportMapping FunctionImportName="Login" FunctionName="CinemaTickResModel.Store.Login" />
+          <FunctionImportMapping FunctionImportName="ModificarSesion" FunctionName="CinemaTickResModel.Store.ModificarSesion" />
+          <FunctionImportMapping FunctionImportName="Modify_Cinema_Room" FunctionName="CinemaTickResModel.Store.Modify_Cinema_Room" />
+          <FunctionImportMapping FunctionImportName="Movie_Listing" FunctionName="CinemaTickResModel.Store.Movie_Listing">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="CinemaTickResModel.Movie_Listing_Result">
+                <ScalarProperty Name="Day" ColumnName="Day" />
+                <ScalarProperty Name="Start_Time" ColumnName="Start_Time" />
+                <ScalarProperty Name="Ending_Time" ColumnName="Ending_Time" />
+                <ScalarProperty Name="Cinema_Room_ID" ColumnName="Cinema_Room_ID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Movie_Modified" FunctionName="CinemaTickResModel.Store.Movie_Modified" />
+          <FunctionImportMapping FunctionImportName="ProvinceCinema" FunctionName="CinemaTickResModel.Store.ProvinceCinema" />
+          <FunctionImportMapping FunctionImportName="RegisterCreditCard" FunctionName="CinemaTickResModel.Store.RegisterCreditCard" />
+          <FunctionImportMapping FunctionImportName="RegisterUser" FunctionName="CinemaTickResModel.Store.RegisterUser" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

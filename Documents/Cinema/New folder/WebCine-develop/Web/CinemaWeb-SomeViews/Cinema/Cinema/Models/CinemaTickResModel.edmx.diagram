@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="13841fe1bcb3473da2852a29653ddc2e" Name="Diagram1" ZoomLevel="40">
+        <EntityTypeShape EntityType="CinemaTickResModel.Actor" Width="1.5" PointX="1.5" PointY="25.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CinemaTickResModel.Cinema" Width="1.5" PointX="1.5" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CinemaTickResModel.Cinema_Listing" Width="1.5" PointX="3.75" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CinemaTickResModel.Cinema_Room" Width="1.5" PointX="1.5" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CinemaTickResModel.Cinema_Room_Type" Width="1.5" PointX="1.5" PointY="23.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CinemaTickResModel.Country" Width="1.5" PointX="1.5" PointY="19" IsExpanded="true" />
+        <EntityTypeShape EntityType="CinemaTickResModel.CreditCard" Width="1.5" PointX="5.25" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CinemaTickResModel.CreditCard_Type" Width="1.5" PointX="3" PointY="42" IsExpanded="true" />
+        <EntityTypeShape EntityType="CinemaTickResModel.Director" Width="1.5" PointX="1.5" PointY="33.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CinemaTickResModel.Email" Width="1.5" PointX="5.25" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CinemaTickResModel.Film_Classification" Width="1.5" PointX="1.5" PointY="36.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CinemaTickResModel.Genre" Width="1.5" PointX="1.5" PointY="39" IsExpanded="true" />
+        <EntityTypeShape EntityType="CinemaTickResModel.Movie" Width="1.5" PointX="1.5" PointY="29" IsExpanded="true" />
+        <EntityTypeShape EntityType="CinemaTickResModel.Phone" Width="1.5" PointX="8.25" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CinemaTickResModel.Phone_Type" Width="1.5" PointX="6" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="CinemaTickResModel.Province" Width="1.5" PointX="1.5" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CinemaTickResModel.Purchase" Width="1.5" PointX="8.25" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CinemaTickResModel.Reserve" Width="1.5" PointX="6" PointY="20.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CinemaTickResModel.TUser" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CinemaTickResModel.User_Type" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
+        <AssociationConnector Association="CinemaTickResModel.FK_Actor_country" ManuallyRouted="false" />
+        <AssociationConnector Association="CinemaTickResModel.FK_Cinema_Province" ManuallyRouted="false" />
+        <AssociationConnector Association="CinemaTickResModel.FK_Cinema_Room_Cinema" ManuallyRouted="false" />
+        <AssociationConnector Association="CinemaTickResModel.FK_Cinema_Listing_Cinema_Room" ManuallyRouted="false" />
+        <AssociationConnector Association="CinemaTickResModel.FK_Cinema_Listing_Movie" ManuallyRouted="false" />
+        <AssociationConnector Association="CinemaTickResModel.FK_Reserve_ToTable" ManuallyRouted="false" />
+        <AssociationConnector Association="CinemaTickResModel.FK_Cinema_Room_Cinema_Room_Type" ManuallyRouted="false" />
+        <AssociationConnector Association="CinemaTickResModel.FK_Director_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="CinemaTickResModel.FK_Province_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="CinemaTickResModel.FK_CreditCard_CreditCard_Type" ManuallyRouted="false" />
+        <AssociationConnector Association="CinemaTickResModel.FK_CreditCard_User" ManuallyRouted="false" />
+        <AssociationConnector Association="CinemaTickResModel.FK_Email_User" ManuallyRouted="false" />
+        <AssociationConnector Association="CinemaTickResModel.FK_Movie_Film_Classification" ManuallyRouted="false" />
+        <AssociationConnector Association="CinemaTickResModel.FK_Phone_Phone_TYpe" ManuallyRouted="false" />
+        <AssociationConnector Association="CinemaTickResModel.FK_Phone_User" ManuallyRouted="false" />
+        <AssociationConnector Association="CinemaTickResModel.FK_Purchase_Reserve" ManuallyRouted="false" />
+        <AssociationConnector Association="CinemaTickResModel.FK_Purchase_User" ManuallyRouted="false" />
+        <AssociationConnector Association="CinemaTickResModel.FK_User_User_Type" ManuallyRouted="false" />
+        <AssociationConnector Association="CinemaTickResModel.Movie_Actor" ManuallyRouted="false" />
+        <AssociationConnector Association="CinemaTickResModel.Movie_Director" ManuallyRouted="false" />
+        <AssociationConnector Association="CinemaTickResModel.Movie_Genre" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

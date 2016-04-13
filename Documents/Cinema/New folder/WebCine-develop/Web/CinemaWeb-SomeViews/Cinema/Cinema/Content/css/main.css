@@ -1,0 +1,48 @@
+body{
+	font-family: 'Lato', sans-serif;	
+}
+img{
+	width: 1.5em;
+	height: 34em;
+}
+.float-left{
+	float: left;
+}
+.espacio-arriba{
+	margin-top: 100px;
+}
+.vete-derecha{
+	float: right;
+}
+.vete-arriba{
+	float: top;
+}
+li{
+	font-size: 20px;
+}
+.verde{
+	color: #00887C;
+}
+.espacio-derecha{
+	margin-right: 10px;
+}
+a, .azul{
+	color: #009FFF;
+}
+.no-lista{
+	margin: 0px;
+	padding: 0px;
+}
+.inline-block{
+ 	display: inline-block;
+}
+.no-lista li{
+	list-style-type: none;
+}
+.se-gris{
+	background-color: #eee;
+}
+.padding-largo{
+	padding: 10px 15px;
+}
+

@@ -1,0 +1,158 @@
+﻿        body {
+        }
+        .nf{
+            float: none;
+            clear: both;
+        }
+        .credit-card-div  span { padding-top:10px; }
+        .credit-card-div img { padding-top:30px; }
+        .credit-card-div .small-font { font-size:9px; }
+        .credit-card-div .pad-adjust { padding-top:10px; }
+        #options{
+            background: white;
+            border-color: white;
+            color: black;
+            padding: 30px 10px;
+            border-radius: 3px;
+        }
+        #options:hover{
+            background-color: #EFEFEF;
+        }
+        #options:active{
+            background-color: #EFEFEF;
+        }
+        span{
+            font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            text-transform: uppercase;
+            color: black;
+            font-weight: bold;
+        }
+        .btn-black:hover{
+            background-color: black;
+            color: white;
+        }
+        section{
+            margin: 0;
+            padding-top: 50px;
+            padding-bottom: 50px;
+        }
+        .social-networks{
+            margin-top: -160px;
+        }
+        .social-networks span{
+            margin: 0 10px;
+        }
+        footer{
+            margin: 0;
+            padding: 25px 0;
+        }
+        footer section{
+            padding: 0;
+        }
+        h2{
+            color: white;
+            margin-bottom: 20px;
+        }
+        #subtitle{
+            text-align: center;
+        }
+        ul.contact-buttons li{}
+        ul.contact-buttons li{
+            display: inline;
+            height: 60px;
+            width: 60px;
+            margin: 50px;
+            font-size: 20px;
+            line-height: 40px;
+            outline: none;
+            text-decoration: none;
+            list-style: none;
+            -webkit-transition: all 0.3s;
+            -moz-transition: all 0.3s;
+            transition: all 0.3s;
+        }
+        #correo-icon{
+            padding-top: 12px;
+            height: 50px;
+        }
+        #ubicacion-icon{
+            height: 60px;
+        }
+        #telefono-icon{
+            padding-left: 16px;
+            height: 60px;
+        }
+        ul.contact-buttons li:hover,
+        ul.contact-buttons li:focus,
+        ul.contact-buttons li:active {
+            background-color: #fed136;
+            padding: 20px 5px 25px 5px;
+        }
+        #footer{
+            padding-top: 50px;
+            margin: 0;
+            background-color: #EFEFEF;
+        }
+        #portafolio{
+            background-color: #DFDFDF;
+        }
+        #ubicacion{
+            background-color: #20B2A2;
+        }
+        section#inicio{
+            background-color: black;
+            vertical-align: middle;
+            background-size: cover;
+            float: right;
+        }
+        div#peliculas{
+            padding: 0;
+        }
+        section#inicio li, div#cont-peliculas ul li{
+            line-height: 40px;
+            outline: none;
+            text-decoration: none;
+            list-style: none;
+            -webkit-transition: all 0.3s;
+            -moz-transition: all 0.3s;
+            transition: all 0.3s;
+        }
+        div#cont-peliculas ul li{
+            padding-bottom: 25px;
+            padding-right: 25px;
+        }
+        #cont-tabla{
+            padding: 0;
+            background-color: white;
+        }
+       .multi-item-carousel,
+  .carousel-inner > .item{
+      transition: 500ms ease-in-out left;
+    }
+    .active{
+      :&.left{
+        left:-33%;
+      }
+      &.right{
+        left:33%;
+      }
+    }
+    .next{
+      left: 33%;
+    }
+    .prev{
+      left: -33%;
+    }
+    @media all and (transform-3d), (-webkit-transform-3d) > .item{
+        transition: 500ms ease-in-out all;
+        backface-visibility: visible;
+        transform: none!important;
+      }
+    }
+  }
+  .carouse-control{
+    &.left, &.right{
+      background-image: none;
+    }
+  }
+}

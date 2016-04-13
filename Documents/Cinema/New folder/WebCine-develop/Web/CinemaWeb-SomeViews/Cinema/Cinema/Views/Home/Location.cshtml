@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "Location";
+    Layout = "~/Views/MasterPage/Master.cshtml";
+}
+
+<section id="ubicacion">
+    <div class="container m <section>
+medium text-center animated fadeIn">
+        <h1 style="text-align: center; padding-bottom: 25px;" class="col-xs-12"><b>Ubicación</b></h1>
+        <p>
+            Av Gustavo Mejia Ricart, Distrito Nacional, Santo Domingo.
+        </p>
+        <div style="margin-top: 50px">
+
+            <div class="col-md-2 col-sm-2 col-xs-1"></div>
+            <button style="border: 5px solid black; margin-bottom: 30px" class="col-sm-8 col-md-8 col-xs-10 btn btn-primary" type="button" id="options">
+                <h3>Mostrar mi ubicación</h3>
+            </button>
+            <div class="col-md-2 col-sm-2 col-xs-1"></div>
+            <aside style="float: left; margin-bottom: 50px;" class="col-md-7 col-sm-12 col-xs-12">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3784.232470712304!2d-69.9392048392735!3d18.473126223437266!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0000000000000000%3A0xbd9829cc25fa6bb4!2sCookies+For+You!5e0!3m2!1ses-419!2sdo!4v1458706381966" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+            </aside>
+            <div class="col-md-5 col-sm-12 col-xs-12" id="cont-tabla" style="float: left; vertical-align: middle; display: block;margin-bottom: 50px;">
+                <table class="w3-table w3-striped w3-border">
+                    <thead>
+                        <tr class="w3-black">
+                            <th>Distancia entre usted y el cine</th>
+                            <th>Datos</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ubication-data">
+                        <tr>
+                            <td>Kilómetros:</td>
+                            <td>7k</td>
+                        </tr>
+                        <tr>
+                            <td>Tiempo estimado en llegar:</td>
+                            <td>35 min</td>
+                        </tr>
+                        <tr>
+                            <td>Asientos reservados:</td>
+                            <td>3</td>
+                        </tr>
+                        <tr>
+                            <td>Cuota a pagar:</td>
+                            <td>400</td>
+                        </tr>
+                        <tr></tr>
+                        <tr></tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</section>
+

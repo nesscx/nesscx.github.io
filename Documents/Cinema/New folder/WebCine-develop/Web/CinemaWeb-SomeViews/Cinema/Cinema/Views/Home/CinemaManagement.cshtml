@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "CinemaManagement";
+    Layout = "~/Views/MasterPage/Master.cshtml";
+}
+
+@{
+    ViewBag.Title = "RoomManagement";
+    Layout = "~/Views/MasterPage/Master.cshtml";
+}
+
+
+<nav class="vete-derecha padding-largo row">
+    <a class="btn btn-default espacio-derecha" href="#" onclick="mostrar_modover()" role="button">Ver Películas</a>
+    <a class="btn btn-default espacio-derecha" href="#" onclick="mostrar_modomodificar()" role="button">Modificar</a>
+</nav>
+
+
+<!--Iframe Modo ver -->
+<div id="iframe_modover_oculto">
+
+    <iframe src="CinemaManagementViewMode" style="width:100%; height:670px"></iframe>
+    <a class="btn btn-default espacio-derecha vete-derecha" href="#" onclick="ocultar_modover()" role="button">Ocultar</a>
+</div>
+
+<!--Iframe Modo Modificar -->
+<div id="iframe_modomodificar_oculto">
+
+    <iframe src="CinemaManagementModifieMode" style="width:100%; height:500px"></iframe>
+    <a class="btn btn-default espacio-derecha vete-derecha" href="#" onclick="ocultar_modomodificar()" role="button">Ocultar</a>
+</div>
+
+<script>
+function mostrar_modover(){
+	document.getElementById('iframe_modover_oculto').style.display = "block";
+}
+
+function ocultar_modover(){
+	document.getElementById('iframe_modover_oculto').style.display = "none";
+}
+
+function mostrar_modomodificar(){
+	document.getElementById('iframe_modomodificar_oculto').style.display = "block";
+}
+
+function ocultar_modomodificar(){
+	document.getElementById('iframe_modomodificar_oculto').style.display = "none";
+}
+
+
+</script>
+
+

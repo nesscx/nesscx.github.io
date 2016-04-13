@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Cinema.Models.Movie>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/MasterPage/Master.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table" style="width:auto; height:auto">
+    <tr style="width:auto; height:auto">
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sypnosis)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Release_Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Image_URL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.duration)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Film_Classification.Classification_Description)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr style="width:auto; height:auto">
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td >
+            @Html.DisplayFor(modelItem => item.Sypnosis)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Release_Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Image_URL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.duration)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Film_Classification.Classification_Description)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Movie_ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Movie_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Movie_ID })
+        </td>
+    </tr>
+}
+
+</table>
